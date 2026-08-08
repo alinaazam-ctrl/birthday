@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Yusra 🎂</title>
+<style>
+  :root{
+    --pink-1:#ffc6e2;
+    --pink-2:#ff8fc4;
+    --pink-3:#ff5da3;
+    --pink-4:#e5297a;
+    --pink-deep:#9c0c56;
+    --gold:#ffd9a0;
+    --cream:#fff8fb;
+    --choco:#5a2d1c;
+    --choco-light:#7a4128;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 20% 15%, #ffb0d8 0%, transparent 45%),
+      radial-gradient(circle at 85% 80%, #ff85bf 0%, transparent 50%),
+      linear-gradient(160deg,var(--pink-1),var(--pink-2) 55%, var(--pink-3));
+    font-family:'Segoe UI', Tahoma, sans-serif;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .bg-orb{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.85), rgba(255,255,255,0) 70%);
+    filter:blur(1px);
+    animation:drift 9s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes drift{
+    0%,100%{ transform:translateY(0) translateX(0); }
+    50%{ transform:translateY(-25px) translateX(15px); }
+  }
+
+  .hint{
+    position:absolute;
+    top:8%;
+    left:50%;
+    transform:translateX(-50%);
+    color:var(--pink-deep);
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:.5px;
+    text-shadow:0 2px 6px rgba(255,255,255,.7);
+    animation:bob 2s ease-in-out infinite;
+    z-index:5;
+    text-align:center;
+    pointer-events:none;
+  }
+  @keyframes bob{
+    0%,100%{ transform:translateX(-50%) translateY(0); }
+    50%{ transform:translateX(-50%) translateY(-6px); }
+  }
+
+  .scene{
+    perspective:1300px;
+    position:relative;
+    z-index:2;
+  }
+
+  .cake-wrap{
+    position:relative;
+    width:300px;
+    height:280px;
+    cursor:pointer;
+  }
+
+  .glow{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:340px;
+    height:340px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(255,255,255,.55), transparent 70%);
+    z-index:0;
+    animation:pulseGlow 3s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{
+    0%,100%{ opacity:.6; transform:translate(-50%,-50%) scale(1); }
+    50%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+  }
+
+  .plate{
+    position:absolute;
+    bottom:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    width:340px;
+    height:30px;
+    background:radial-gradient(ellipse at center, #ffffff 0%, #ffdcee 65%, #ffb8dd 100%);
+    border-radius:50%;
+    box-shadow:0 12px 26px rgba(201,24,126,.35), 0 0 0 6px rgba(255,255,255,.5) inset;
+    z-index:1;
+  }
+  .plate::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:repeating-conic-gradient(from 0deg, rgba(255,255,255,.5) 0deg 6deg, transparent 6deg 12deg);
+    opacity:.4;
+  }
+
+  .candle{
+    position:absolute;
+    top:-52px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:44px;
+    background:repeating-linear-gradient(45deg,#fff,#fff 4px,var(--pink-4) 4px,var(--pink-4) 8px);
+    border-radius:4px;
+    z-index:6;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .flame{
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:14px;
+    height:22px;
+    background:radial-gradient(ellipse at bottom, #fff59d, #ff9800 55%, #ff5722);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation:flicker 0.6s infinite alternate;
+    filter:drop-shadow(0 0 8px #ffb74d);
+  }
+  @keyframes flicker{
+    from{transform:translateX(-50%) scale(1) rotate(-3deg);}
+    to{transform:translateX(-50%) scale(1.18) rotate(4deg);}
+  }
+
+  .half{
+    position:absolute;
+    top:0;
+    width:50%;
+    height:100%;
+    overflow:hidden;
+    transition:transform 1.1s cubic-bezier(.65,-0.15,.35,1.2);
+    transform-style:preserve-3d;
+    z-index:3;
+    filter:drop-shadow(0 14px 18px rgba(201,24,126,.3));
+  }
+  .left-half{ left:0; transform-origin:left center; }
+  .right-half{ right:0; transform-origin:right center; }
+
+  .cake-wrap.open .left-half{ transform:rotateY(-120deg); }
+  .cake-wrap.open .right-half{ transform:rotateY(120deg); }
+
+  .half-inner{
+    position:absolute;
+    top:0;
+    width:300px;
+    height:100%;
+  }
+  .left-half .half-inner{ left:0; }
+  .right-half .half-inner{ right:0; }
+
+  .layer{
+    position:absolute;
+    left:6px; right:6px;
+    border-radius:10px;
+  }
+  .frosting-top{
+    top:0; height:36px;
+    background:linear-gradient(180deg,#ffffff,#ffd6ea);
+    border-radius:50%/75%;
+    box-shadow:inset 0 -5px 8px rgba(229,41,122,.4), 0 2px 4px rgba(255,255,255,.8) inset;
+    overflow:visible;
+  }
+  .choco-drizzle{
+    position:absolute;
+    top:2px;
+    left:0; right:0;
+    height:22px;
+    background:
+      radial-gradient(circle at 15% 40%, var(--choco) 0 4px, transparent 5px) 0 0/26px 22px repeat-x,
+      radial-gradient(circle at 60% 65%, var(--choco-light) 0 3px, transparent 4px) 4px 6px/26px 22px repeat-x;
+    opacity:.9;
+    z-index:2;
+    pointer-events:none;
+  }
+  .choco-line{
+    position:absolute;
+    height:4px;
+    background:linear-gradient(90deg, var(--choco), var(--choco-light), var(--choco));
+    border-radius:3px;
+    opacity:.85;
+    z-index:2;
+    pointer-events:none;
+  }
+  .top-sprinkle{
+    position:absolute;
+    width:6px;height:3px;
+    border-radius:2px;
+    z-index:3;
+    pointer-events:none;
+  }
+  .drip{
+    top:28px; height:24px;
+    background:
+      radial-gradient(circle at 10% 0, transparent 8px, var(--pink-4) 9px) 0 0/34px 20px repeat-x,
+      var(--pink-4);
+    border-radius:0 0 12px 12px;
+  }
+  .sponge1{ top:50px; height:66px; background:linear-gradient(180deg,#ffcfe6,#ffabd6); }
+  .cream-mid{ top:116px; height:16px; background:#fff3f9; box-shadow:inset 0 2px 4px rgba(201,24,126,.25);}
+  .sponge2{ top:130px; height:86px; background:linear-gradient(180deg,#ffa9d1,#ff85bf); }
+  .base{
+    top:214px; height:24px;
+    background:linear-gradient(180deg,#ffe4f1,#ffffff);
+    border-radius:8px;
+    box-shadow:0 8px 14px rgba(201,24,126,.25);
+  }
+  .sprinkle{
+    position:absolute;
+    width:7px;height:7px;
+    border-radius:2px;
+    box-shadow:0 1px 2px rgba(0,0,0,.1);
+  }
+
+  .pearl{
+    position:absolute;
+    top:6px;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #fff, var(--gold));
+    box-shadow:0 1px 3px rgba(0,0,0,.15);
+  }
+
+  .message{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(.7);
+    width:320px;
+    max-width:82vw;
+    text-align:center;
+    color:var(--pink-deep);
+    background:linear-gradient(180deg, #ffffff, #fff0f7);
+    border-radius:22px;
+    padding:24px 20px;
+    box-shadow:0 16px 40px rgba(201,24,126,.4), 0 0 0 4px rgba(255,255,255,.6) inset;
+    opacity:0;
+    z-index:1;
+    transition:opacity .8s ease .5s, transform .8s ease .5s;
+    font-weight:600;
+    font-size:16px;
+    line-height:1.55;
+    border:1px solid #ffd6ec;
+  }
+  .cake-wrap.open .message{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+  .message .romantic{
+    display:block;
+    font-size:13px;
+    color:#c2478a;
+    margin-bottom:10px;
+    font-style:italic;
+  }
+  .message .main-line{
+    font-size:18px;
+    color:var(--pink-4);
+  }
+  .message .heart{
+    color:#ff4b8b;
+  }
+
+  .hearts-float span{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    opacity:0;
+    animation:floatUp 3s ease-in forwards;
+    pointer-events:none;
+    z-index:4;
+  }
+  @keyframes floatUp{
+    0%{opacity:0; transform:translateY(0) scale(.5);}
+    15%{opacity:1;}
+    100%{opacity:0; transform:translateY(-280px) scale(1.2) rotate(20deg);}
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-orb" style="width:80px;height:80px; top:10%; left:12%;"></div>
+  <div class="bg-orb" style="width:50px;height:50px; top:70%; left:80%; animation-delay:2s;"></div>
+  <div class="bg-orb" style="width:110px;height:110px; top:75%; left:8%; animation-delay:4s;"></div>
+  <div class="bg-orb" style="width:60px;height:60px; top:15%; left:82%; animation-delay:1s;"></div>
+
+  <div class="hint">click on the cake 🎂</div>
+
+  <div class="scene">
+    <div class="cake-wrap" id="cakeWrap">
+      <div class="glow"></div>
+      <div class="candle"><div class="flame"></div></div>
+
+      <div class="message">
+        <span class="romantic">marein gein chaku niklega cake bhai ka</span>
+        <span class="main-line">budday is here very soon,<br>happy birthday yusra cutu <span class="heart">❤️</span></span><br>
+        <span class="romantic">i love you</span>
+      </div>
+
+      <div class="half left-half">
+        <div class="half-inner">
+          <div class="layer frosting-top">
+            <div class="choco-drizzle"></div>
+          </div>
+          <div class="layer drip"></div>
+          <div class="layer sponge1"></div>
+          <div class="layer cream-mid"></div>
+          <div class="layer sponge2"></div>
+          <div class="layer base"></div>
+        </div>
+      </div>
+
+      <div class="half right-half">
+        <div class="half-inner">
+          <div class="layer frosting-top">
+            <div class="choco-drizzle"></div>
+          </div>
+          <div class="layer drip"></div>
+          <div class="layer sponge1"></div>
+          <div class="layer cream-mid"></div>
+          <div class="layer sponge2"></div>
+          <div class="layer base"></div>
+        </div>
+      </div>
+
+      <div class="plate"></div>
+      <div class="hearts-float" id="hearts"></div>
+    </div>
+  </div>
+
+<script>
+  const wrap = document.getElementById('cakeWrap');
+  const heartsBox = document.getElementById('hearts');
+
+  const colors = ['#ff6fb0','#ffd9a0','#ffffff','#ff5da3','#9c0c56','#5a2d1c'];
+  document.querySelectorAll('.half-inner').forEach(inner => {
+    for(let i=0;i<7;i++){
+      const sp = document.createElement('div');
+      sp.className = 'sprinkle';
+      sp.style.top = (8 + Math.random()*20) + 'px';
+      sp.style.left = (10 + Math.random()*260) + 'px';
+      sp.style.background = colors[Math.floor(Math.random()*colors.length)];
+      sp.style.transform = `rotate(${Math.random()*360}deg)`;
+      inner.appendChild(sp);
+    }
+    for(let i=0;i<4;i++){
+      const pl = document.createElement('div');
+      pl.className = 'pearl';
+      pl.style.left = (20 + Math.random()*250) + 'px';
+      inner.appendChild(pl);
+    }
+    // chocolate drizzle lines dripping down from the top
+    for(let i=0;i<3;i++){
+      const cl = document.createElement('div');
+      cl.className = 'choco-line';
+      const left = 15 + Math.random()*250;
+      cl.style.left = left + 'px';
+      cl.style.top = '6px';
+      cl.style.width = (16 + Math.random()*10) + 'px';
+      cl.style.transform = `rotate(${(Math.random()*40 - 20)}deg)`;
+      inner.appendChild(cl);
+    }
+    // extra tiny sprinkles scattered on the very top of frosting
+    for(let i=0;i<10;i++){
+      const ts = document.createElement('div');
+      ts.className = 'top-sprinkle';
+      ts.style.top = (2 + Math.random()*10) + 'px';
+      ts.style.left = (10 + Math.random()*265) + 'px';
+      ts.style.background = colors[Math.floor(Math.random()*colors.length)];
+      ts.style.transform = `rotate(${Math.random()*360}deg)`;
+      inner.appendChild(ts);
+    }
+  });
+
+  wrap.addEventListener('click', () => {
+    const opening = !wrap.classList.contains('open');
+    wrap.classList.toggle('open');
+    if(opening){
+      spawnHearts();
+    }
+  });
+
+  function spawnHearts(){
+    const emojis = ['💗','💕','🎂','✨','🩷','🌸'];
+    for(let i=0;i<16;i++){
+      const s = document.createElement('span');
+      s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      s.style.left = (Math.random()*280) + 'px';
+      s.style.animationDelay = (Math.random()*1.2) + 's';
+      s.style.fontSize = (14 + Math.random()*14) + 'px';
+      heartsBox.appendChild(s);
+      setTimeout(()=> s.remove(), 4000);
+    }
+  }
+</script>
+</body>
+</html>
